@@ -4,6 +4,8 @@ Use Font Awesome in project written in Swift. If you hope to use lastest edition
 
 `Font-Awesome` supports the input with Unicode.
 
+![ ](https://raw.github.com/hirohisa/Font-Awesome/master/Example/Example.png)
+
 Requirements
 ----------
 
