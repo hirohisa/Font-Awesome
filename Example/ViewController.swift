@@ -13,18 +13,43 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let label = UILabel(frame: CGRect(x: 100, y: 100, width: 20, height: 20))
-        label.font = UIFont.fontAwesome(size: 15)
-        let string = String.fontAwesome(unicode: 0xf002)
+        // UIBarButtonItem
+        let barButtonItem = UIBarButtonItem(fontAwesome: "f002", target: nil, action: nil)
+        navigationItem.rightBarButtonItem = barButtonItem
 
-        label.text = string
+        // UILabel
+        let label = UILabel(frame: CGRect(x: 80, y: 200, width: 0, height: 0))
+        label.font = UIFont.fontAwesome(size: 40)
+
+        let icons = [
+            String.fontAwesome(unicode: 0xf126),
+            String.fontAwesome(unicode: 0xf092),
+            String.fontAwesome(unicode: 0xf092),
+            String.fontAwesome(unicode: 0xf092),
+            String.fontAwesome(unicode: 0xf126),
+        ]
+
+        label.text = join(" ", icons)
+        label.sizeToFit()
         view.addSubview(label)
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+        // UIButton
+        let twButton = UIButton(frame: CGRect(x: 160, y: 300, width: 40, height: 40))
+        twButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        twButton.setFontAwesome(fontAwesome: "f081", forState: .Normal)
+        view.addSubview(twButton)
 
+        let fbButton = UIButton(frame: CGRect(x: 200, y: 300, width: 40, height: 40))
+        fbButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        fbButton.setFontAwesome(fontAwesome: "f082", forState: .Normal)
+        view.addSubview(fbButton)
+
+        let gpButton = UIButton(frame: CGRect(x: 240, y: 300, width: 40, height: 40))
+        gpButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        gpButton.setFontAwesome(fontAwesome: "f0d4", forState: .Normal)
+        view.addSubview(gpButton)
+
+    }
 
 }
 

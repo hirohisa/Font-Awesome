@@ -24,7 +24,6 @@ class FontLoader {
 }
 
 extension UIFont {
-
     class func fontAwesome(#size: CGFloat) -> UIFont {
         let name = "FontAwesome"
         if (UIFont.fontNamesForFamilyName(name).count == 0) {
@@ -36,7 +35,39 @@ extension UIFont {
 }
 
 extension String {
-    static func fontAwesome(#unicode: Int) -> String {
+    static func fontAwesome(#unicode: UInt32) -> String {
         return String(UnicodeScalar(unicode))
+    }
+
+    static func fontAwesome(#unicode: String) -> String {
+        let scanner = NSScanner(string: unicode)
+        var _unicode : UInt32 = 0
+        if scanner.scanHexInt(&_unicode) {
+            return String(UnicodeScalar(_unicode))
+        }
+
+        return unicode
+    }
+}
+
+extension UIButton {
+
+    func setFontAwesome(#fontAwesome: String, forState state: UIControlState) {
+        let title = String.fontAwesome(unicode: fontAwesome)
+        setTitle(title, forState: state)
+        let font = UIFont.fontAwesome(size: titleLabel!.font.pointSize)
+        titleLabel!.font = font
+    }
+
+}
+
+public extension UIBarButtonItem {
+    convenience init(fontAwesome: String, target: AnyObject?, action: Selector) {
+        let title = String.fontAwesome(unicode: fontAwesome)
+        self.init(title: title, style: .Plain, target: target, action: action)
+
+        let font = UIFont.fontAwesome(size: 25)
+        let attributes = [NSFontAttributeName: font]
+        self.setTitleTextAttributes(attributes, forState: .Normal)
     }
 }
