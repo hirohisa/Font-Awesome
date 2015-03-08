@@ -8,9 +8,16 @@
 
 import UIKit
 
-class FontLoader {
-    class func read(name: String) {
-        let fontURL = NSBundle.mainBundle().URLForResource(name, withExtension: "otf")
+class FontAwesome {
+
+    class func load() {
+        let fontName = "FontAwesome"
+
+        if (UIFont.fontNamesForFamilyName(fontName).count > 0) {
+            return
+        }
+
+        let fontURL = NSBundle.mainBundle().URLForResource(fontName, withExtension: "otf")
         let data = NSData(contentsOfURL: fontURL!)!
 
         let provider = CGDataProviderCreateWithCFData(data)
@@ -25,12 +32,8 @@ class FontLoader {
 
 extension UIFont {
     class func fontAwesome(#size: CGFloat) -> UIFont {
-        let name = "FontAwesome"
-        if (UIFont.fontNamesForFamilyName(name).count == 0) {
-            FontLoader.read(name)
-        }
-
-        return UIFont(name: name, size: size)!
+        FontAwesome.load()
+        return UIFont(name: "FontAwesome", size: size)!
     }
 }
 
