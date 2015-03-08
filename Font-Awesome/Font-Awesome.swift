@@ -10,22 +10,32 @@ import UIKit
 
 class FontAwesome {
 
+    struct Static {
+        static var token : dispatch_once_t = 0
+    }
+
     class func load() {
-        let fontName = "FontAwesome"
-
-        if (UIFont.fontNamesForFamilyName(fontName).count > 0) {
-            return
+        dispatch_once(&Static.token) {
+            FontManager.load("FontAwesome")
         }
+    }
 
-        let fontURL = NSBundle.mainBundle().URLForResource(fontName, withExtension: "otf")
-        let data = NSData(contentsOfURL: fontURL!)!
+    class FontManager {
+        class func load(fontName: String) {
+            if (UIFont.fontNamesForFamilyName(fontName).count > 0) {
+                return
+            }
 
-        let provider = CGDataProviderCreateWithCFData(data)
-        let font = CGFontCreateWithDataProvider(provider)!
+            let fontURL = NSBundle.mainBundle().URLForResource(fontName, withExtension: "otf")
+            let data = NSData(contentsOfURL: fontURL!)!
 
-        var error: Unmanaged<CFError>?
-        if !CTFontManagerRegisterGraphicsFont(font, &error) {
-            println(error)
+            let provider = CGDataProviderCreateWithCFData(data)
+            let font = CGFontCreateWithDataProvider(provider)!
+
+            var error: Unmanaged<CFError>?
+            if !CTFontManagerRegisterGraphicsFont(font, &error) {
+                println(error)
+            }
         }
     }
 }
