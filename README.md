@@ -17,15 +17,14 @@ Installation
 
 1. Copy `Font-Awesome` directory into your project
 2. Download zip file from https://fortawesome.github.io/Font-Awesome/
-3. Copy `FontAwesome.otf` from zip file
+3. Copy `FontAwesome.otf` from zip file into your project
 
 Features
 ----------
 
 - [x] Support Unicode from String or UInt.
-- [ ] Support extension UIButton.
+- [ ] Support extension UIButton. ( still adjust UIFont.pointSize )
 - [x] Support extension UIBarButtonItem
- 
 
 Usage
 ----------
@@ -38,7 +37,7 @@ Usage
 
 2. Set String with Unicode
 
- Use String or Int 
+ Use String or Int
  ```swift
  String.fontAwesome(unicode: 0xf092) // UInt32
  String.fontAwesome(unicode: "f092") // String
@@ -49,12 +48,17 @@ Example
 
 - Use extension
  ```swift
+ // UIButton
+ let button = UIButton(frame: frame)
+ button.setTitleColor(UIColor.blueColor(), forState: .Normal)
+ button.setFontAwesome(fontAwesome: "f081", forState: .Normal)
+
  // UIBarButtonItem
  let barButtonItem = UIBarButtonItem(fontAwesome: "f002", target: nil, action: nil) // f002 = fa-search
  navigationItem.rightBarButtonItem = barButtonItem
- 
+
  // UILabel
- let label = UILabel(frame: CGRect(x: 80, y: 200, width: 0, height: 0))
+ let label = UILabel(frame: frame)
  label.font = UIFont.fontAwesome(size: 40)
  label.text = String.fontAwesome(unicode: 0xf092) // f092 = fa-github-square
  ```
