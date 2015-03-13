@@ -23,7 +23,7 @@ Features
 ----------
 
 - [x] Support Unicode from String or UInt.
-- [ ] Support extension UIButton. ( still adjust UIFont.pointSize )
+- [x] Support extension UIButton.
 - [x] Support extension UIBarButtonItem
 
 Usage
