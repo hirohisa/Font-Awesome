@@ -83,7 +83,7 @@ extension UIButton {
     func setFontAwesome(#fontAwesome: String, forState state: UIControlState) {
         let title = String.fontAwesome(unicode: fontAwesome)
         setTitle(title, forState: state)
-        let font = UIFont.fontAwesome(size: frame.height - 2) // use 1point to padding
+        let font = UIFont.fontAwesome(size: frame.height - 4) // use 1point to padding
         titleLabel!.font = font
     }
 
