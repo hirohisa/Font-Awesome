@@ -23,6 +23,30 @@
 
 import UIKit
 
+protocol UnicodeLiteralConvertible {
+    func convertToUnicode() -> String
+}
+
+extension String: UnicodeLiteralConvertible {
+
+    func convertToUnicode() -> String {
+        let scanner = NSScanner(string: self)
+        var _unicode : UInt32 = 0
+        if scanner.scanHexInt(&_unicode) {
+            return String(UnicodeScalar(_unicode))
+        }
+
+        return self
+    }
+}
+
+extension UInt32: UnicodeLiteralConvertible {
+
+    func convertToUnicode() -> String {
+        return String(UnicodeScalar(self))
+    }
+}
+
 class FontAwesome {
 
     struct Static {
