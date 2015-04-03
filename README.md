@@ -38,7 +38,13 @@ Usage
 2. Set String with Unicode
 
  Use String or Int
+ 
  ```swift
+
+ extension String {
+   static func fontAwesome(unicode fontAwesome: UnicodeLiteralConvertible) -> String
+ }
+ 
  String.fontAwesome(unicode: 0xf092) // Int
  String.fontAwesome(unicode: "f092") // String
  ```
