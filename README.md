@@ -22,7 +22,7 @@ Installation
 Features
 ----------
 
-- [x] Support Unicode from String or UInt.
+- [x] Support Unicode from String or Int.
 - [x] Support extension UIButton.
 - [x] Support extension UIBarButtonItem
 
@@ -39,7 +39,7 @@ Usage
 
  Use String or Int
  ```swift
- String.fontAwesome(unicode: 0xf092) // UInt32
+ String.fontAwesome(unicode: 0xf092) // Int
  String.fontAwesome(unicode: "f092") // String
  ```
 
