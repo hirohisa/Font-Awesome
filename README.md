@@ -22,7 +22,7 @@ Installation
 Features
 ----------
 
-- [x] Support Unicode from String or Int.
+- [x] Support Unicode from String or Int. not use [UInt](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID320)
 - [x] Support extension UIButton.
 - [x] Support extension UIBarButtonItem
 
