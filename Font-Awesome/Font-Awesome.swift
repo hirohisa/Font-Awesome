@@ -23,6 +23,30 @@
 
 import UIKit
 
+protocol UnicodeLiteralConvertible {
+    func convertToUnicode() -> String
+}
+
+extension String: UnicodeLiteralConvertible {
+
+    func convertToUnicode() -> String {
+        let scanner = NSScanner(string: self)
+        var _unicode : UInt32 = 0
+        if scanner.scanHexInt(&_unicode) {
+            return String(UnicodeScalar(_unicode))
+        }
+
+        return self
+    }
+}
+
+extension Int: UnicodeLiteralConvertible {
+
+    func convertToUnicode() -> String {
+        return String(UnicodeScalar(self))
+    }
+}
+
 class FontAwesome {
 
     struct Static {
@@ -63,25 +87,15 @@ extension UIFont {
 }
 
 extension String {
-    static func fontAwesome(#unicode: UInt32) -> String {
-        return String(UnicodeScalar(unicode))
-    }
-
-    static func fontAwesome(#unicode: String) -> String {
-        let scanner = NSScanner(string: unicode)
-        var _unicode : UInt32 = 0
-        if scanner.scanHexInt(&_unicode) {
-            return String(UnicodeScalar(_unicode))
-        }
-
-        return unicode
+    static func fontAwesome(unicode fontAwesome: UnicodeLiteralConvertible) -> String {
+        return fontAwesome.convertToUnicode()
     }
 }
 
 extension UIButton {
 
-    func setFontAwesome(#fontAwesome: String, forState state: UIControlState) {
-        let title = String.fontAwesome(unicode: fontAwesome)
+    func setFontAwesome(#fontAwesome: UnicodeLiteralConvertible, forState state: UIControlState) {
+        let title = fontAwesome.convertToUnicode()
         setTitle(title, forState: state)
         let font = UIFont.fontAwesome(size: frame.height - 4) // use 2point to padding
         titleLabel!.font = font
