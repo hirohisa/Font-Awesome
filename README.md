@@ -25,6 +25,8 @@ Features
 - [x] Support Unicode from String or Int. not use [UInt](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID320)
 - [x] Support extension UIButton.
 - [x] Support extension UIBarButtonItem
+- [x] Support extension UIImageView
+
 
 Usage
 ----------
@@ -38,13 +40,13 @@ Usage
 2. Set String with Unicode
 
  Use String or Int
- 
+
  ```swift
 
  extension String {
    static func fontAwesome(unicode fontAwesome: UnicodeLiteralConvertible) -> String
  }
- 
+
  String.fontAwesome(unicode: 0xf092) // Int
  String.fontAwesome(unicode: "f092") // String
  ```
@@ -67,6 +69,11 @@ Example
  let label = UILabel(frame: frame)
  label.font = UIFont.fontAwesome(size: 40)
  label.text = String.fontAwesome(unicode: 0xf092) // f092 = fa-github-square
+
+ // UIImageView
+ let imageView = UIImageView(frame: frame)
+ imageView.fontAwesome(fontAwesome: "f087")
+
  ```
 
 LICENSE
