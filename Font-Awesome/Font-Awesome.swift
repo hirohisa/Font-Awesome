@@ -96,6 +96,40 @@ extension String {
 
 // UIKit
 
+extension UIImageView {
+
+    func fontAwesome(#fontAwesome: UnicodeLiteralConvertible) {
+        let _image = _fontAwesome(fontAwesome: fontAwesome)
+
+        image = _image
+    }
+
+    private func _fontAwesome(#fontAwesome: UnicodeLiteralConvertible, color: UIColor = UIColor.blackColor()) -> UIImage {
+        let unicode = fontAwesome.convertToUnicode()
+        let font = UIFont.fontAwesome(size: frame.height)
+
+        UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
+
+        let textSize = unicode.sizeWithAttributes([NSFontAttributeName : font])
+        let x = (bounds.width - textSize.width)/2
+        let y = (bounds.height - textSize.height)/2
+        let textRect = CGRect(x: x, y: y, width: textSize.width, height: textSize.height)
+
+        let style = NSMutableParagraphStyle.defaultParagraphStyle()
+        let attributes = [
+            NSFontAttributeName: font,
+            NSForegroundColorAttributeName: color,
+            NSParagraphStyleAttributeName: style
+        ]
+        unicode.drawInRect(textRect, withAttributes: attributes)
+
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+
+        return image
+    }
+
+}
+
 extension UIButton {
 
     func setFontAwesome(#fontAwesome: UnicodeLiteralConvertible, forState state: UIControlState) {

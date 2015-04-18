@@ -49,6 +49,13 @@ class ViewController: UIViewController {
         gpButton.setFontAwesome(fontAwesome: "f0d4", forState: .Normal)
         view.addSubview(gpButton)
 
+        // UIImageView
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        imageView.center = view.center
+        imageView.frame.offset(dx: 0, dy: 100)
+        imageView.fontAwesome(fontAwesome: "f087")
+        view.addSubview(imageView)
+
     }
 
 }
