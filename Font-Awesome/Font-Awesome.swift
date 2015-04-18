@@ -79,6 +79,8 @@ class FontAwesome {
     }
 }
 
+// Use Font Awesome
+
 extension UIFont {
     class func fontAwesome(#size: CGFloat) -> UIFont {
         FontAwesome.load()
@@ -91,6 +93,8 @@ extension String {
         return fontAwesome.convertToUnicode()
     }
 }
+
+// UIKit
 
 extension UIButton {
 
