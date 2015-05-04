@@ -60,20 +60,35 @@ class FontAwesome {
     }
 
     class FontManager {
+
         class func load(fontName: String) {
             if (UIFont.fontNamesForFamilyName(fontName).count > 0) {
                 return
             }
 
-            let fontURL = NSBundle.mainBundle().URLForResource(fontName, withExtension: "otf")
-            let data = NSData(contentsOfURL: fontURL!)!
+            if let fontData = findFontData(fontName) {
+                registerFontData(fontData)
+            }
+        }
 
-            let provider = CGDataProviderCreateWithCFData(data)
-            let font = CGFontCreateWithDataProvider(provider)!
+        class func findFontData(fontName: String) -> NSData? {
+            if let fontURL = NSBundle.mainBundle().URLForResource(fontName, withExtension: "otf") {
+                let data = NSData(contentsOfURL: fontURL)
 
-            var error: Unmanaged<CFError>?
-            if !CTFontManagerRegisterGraphicsFont(font, &error) {
-                println(error)
+                return data
+            }
+
+            return nil
+        }
+
+        class func registerFontData(fontData: NSData) {
+
+            let provider = CGDataProviderCreateWithCFData(fontData)
+            if let font = CGFontCreateWithDataProvider(provider) {
+                var error: Unmanaged<CFError>?
+                if !CTFontManagerRegisterGraphicsFont(font, &error) {
+                    println(error)
+                }
             }
         }
     }
@@ -84,7 +99,11 @@ class FontAwesome {
 extension UIFont {
     class func fontAwesome(#size: CGFloat) -> UIFont {
         FontAwesome.load()
-        return UIFont(name: "FontAwesome", size: size)!
+
+        if let font = UIFont(name: "FontAwesome", size: size) {
+            return font
+        }
+        return UIFont.systemFontOfSize(size)
     }
 }
 
