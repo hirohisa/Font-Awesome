@@ -66,19 +66,17 @@ class FontAwesome {
                 return
             }
 
-            if let fontData = findFontData(fontName) {
-                registerFontData(fontData)
-            }
+            let fontData = findFontData(fontName)
+            registerFontData(fontData)
         }
 
-        class func findFontData(fontName: String) -> NSData? {
-            if let fontURL = NSBundle.mainBundle().URLForResource(fontName, withExtension: "otf") {
-                let data = NSData(contentsOfURL: fontURL)
-
+        class func findFontData(fontName: String) -> NSData {
+            let fontURL = NSBundle.mainBundle().URLForResource(fontName, withExtension: "otf")
+            if let fontURL = fontURL, let data = NSData(contentsOfURL: fontURL) {
                 return data
             }
 
-            return nil
+            fatalError("\(fontName).otf is not found in the main bundle resources.")
         }
 
         class func registerFontData(fontData: NSData) {
