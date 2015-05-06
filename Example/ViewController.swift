@@ -33,6 +33,16 @@ class ViewController: UIViewController {
         label.sizeToFit()
         view.addSubview(label)
 
+        // mix with English
+        let mixiedLabel = UILabel(frame: CGRect(x: 80, y: 250, width: 150, height: 30))
+        mixiedLabel.font = UIFont.fontAwesome(size: 25)
+        mixiedLabel.text = "\(String.fontAwesome(unicode: 0xf092)) github.com"
+
+        let size = mixiedLabel.sizeThatFits(mixiedLabel.frame.size)
+        mixiedLabel.frame.size = size
+
+        view.addSubview(mixiedLabel)
+
         // UIButton
         let twButton = UIButton(frame: CGRect(x: 160, y: 300, width: 40, height: 40))
         twButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
