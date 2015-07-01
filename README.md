@@ -18,6 +18,7 @@ Installation
 1. Copy `Font-Awesome` directory into your project
 2. Download zip file from https://fortawesome.github.io/Font-Awesome/
 3. Copy `FontAwesome.otf` from zip file into your project
+4. Check to import `FontAwesome.otf` in project, "Project" > "Target" > "Copy Bundle Resources"
 
 Features
 ----------
