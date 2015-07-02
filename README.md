@@ -27,7 +27,7 @@ Features
 - [x] Support extension UIButton.
 - [x] Support extension UIBarButtonItem
 - [x] Support extension UIImageView
-
+- [ ] Support Cocoapods
 
 Usage
 ----------
